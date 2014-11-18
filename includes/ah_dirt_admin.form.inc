@@ -29,7 +29,7 @@ function ah_dirt_admin() {
     '#type' => 'textfield',
     '#title' => t('DHCommons URL'),
     '#default_value' => variable_get('ah_dirt_dhcommons_url', 'http://dev.dhcommons.org'),
-    '#description' => t('URL of DHCommons sie.'),
+    '#description' => t('URL of DHCommons site.'),
   );
   $form['ah_dirt_dhcommons_rest_path'] = array(
     '#type' => 'textfield',

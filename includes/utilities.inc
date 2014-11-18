@@ -11,9 +11,11 @@
  *   Name of tool to be returned
  */
 function ah_dirt_projects_fetch($title = NULL) {
-  global $base_url;
-  $url = "$base_url/project";
-  $api_key = variable_get('ah_dirt_api_key', '');
+  $dhcommons_url = variable_get('ah_dirt_dhcommons_url', 'http://test.bamboodirt.gotpantheon.com');
+  $rest_path = variable_get('ah_dirt_dhcommons_rest_path', 'rest');
+  $alias = variable_get('ah_dirt_dhcommons_alias', 'project');
+  $url = "$dhcommons_url/$rest_path/$alias";
+  $api_key = variable_get('ah_dhcommons_api_key', '');
   $post_data = array(
     'api-key' => $api_key,
     'tool_name' => $title,
@@ -25,12 +27,11 @@ function ah_dirt_projects_fetch($title = NULL) {
     'method' => 'POST',
     'data' => $data
   );
-  $response = drupal_http_request($url . '/project/fetch', $options);
+  $response = drupal_http_request($url . '/fetch', $options);
   $objects = json_decode($response->data);
   $block = theme('dirt_dhcommons_block', array('objects' => $objects));
 
   return $block;
-
 }
 
 /**
