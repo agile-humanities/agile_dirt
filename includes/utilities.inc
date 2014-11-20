@@ -11,7 +11,7 @@
  *   Name of tool to be returned
  */
 function ah_dirt_projects_fetch($title = NULL) {
-  $dhcommons_url = variable_get('ah_dirt_dhcommons_url', 'http://test.bamboodirt.gotpantheon.com');
+  $dhcommons_url = variable_get('ah_dirt_dhcommons_url', 'http://dev.dhcommons.org');
   $rest_path = variable_get('ah_dirt_dhcommons_rest_path', 'rest');
   $alias = variable_get('ah_dirt_dhcommons_alias', 'project');
   $url = "$dhcommons_url/$rest_path/$alias";

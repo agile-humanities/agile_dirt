@@ -7,10 +7,10 @@
 /**
  * Implements hook_preprocess().
  */
-function ah_dhcommons_preprocess_dirt_dhcommons_item(array &$variables) {
+function ah_dirt_preprocess_dirt_dhcommons_item(array &$variables) {
   $path = drupal_get_path('module', 'ah_dirt');
   drupal_add_css("$path/css/dirt_dhcommons.css");
-  $base = variable_get('ah_dhcommons_url', 'http://test.bamboodirt.gotpantheon.com');
+  $base = variable_get('ah_dirt_dhcommons_url', 'http://dev.dhcommons.org');
   $title = $variables['title'];
   $nid = $variables['nid'];
   $variables['link'] = l($title, "$base/node/$nid");
@@ -19,7 +19,7 @@ function ah_dhcommons_preprocess_dirt_dhcommons_item(array &$variables) {
 /**
  * Implements hook_preprocess().
  */
-function ah_dhcommons_preprocess_dirt_dhcommons_block(array &$variables) {
+function ah_dirt_preprocess_dirt_dhcommons_block(array &$variables) {
   $max_count = variable_get('ah_dirt_project_count', 5);
   $path = drupal_get_path('module', 'ah_dirt');
   drupal_add_css("$path/css/dhcommons_dirt.css");

@@ -2,5 +2,5 @@
 
 ?>
 <div class ="dirt_title">
-  <?php print $link; ?>
+  <?php print $variables['link']; ?>
 </div>
