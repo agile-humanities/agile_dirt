@@ -137,7 +137,7 @@ function ah_dirt_find_item_items($nitems, $timestamp) {
   $query->addField('tt', 'name', 'license');
   $query->condition('n.type', 'item', '=');
   if ($tools) {
-     $query->condition('tt.name', $tools, '=');
+     $query->condition('v.title', $tools, 'in');
   }
   // How many days ago?
   if ($timestamp) {
