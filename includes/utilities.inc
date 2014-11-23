@@ -7,7 +7,7 @@
  *
  * @param string $nitems
  *   number of items to return
- * @param string $tool_name
+ * @param string $tools
  *   Name of tool to be returned
  */
 function ah_dirt_projects_fetch($title = NULL) {
@@ -18,7 +18,7 @@ function ah_dirt_projects_fetch($title = NULL) {
   $api_key = variable_get('ah_dhcommons_api_key', '');
   $post_data = array(
     'api-key' => $api_key,
-    'tool_name' => $title,
+    'tools' => $title,
   );
   $data = http_build_query($post_data, '', '&');
   $options = array(

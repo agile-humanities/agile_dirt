@@ -121,7 +121,7 @@ function _ah_dirt_item_retrieve($fn, $nitems, $timestamp) {
 function ah_dirt_find_item_items($nitems, $timestamp) {
   // Compose query
   $nitems = isset($_POST['nitems']) ? $_POST['nitems'] : NULL;
-  $tool_name = $_POST['tool_name'];
+  $tools = unserialize($_POST['tools']);
   $query = db_select('node', 'n');
   $query->join('node_revision', 'v', '(n.nid = v.nid) AND (n.vid = v.vid)');
   $query->join('users', 'u', 'n.uid = u.uid');
@@ -136,8 +136,8 @@ function ah_dirt_find_item_items($nitems, $timestamp) {
   $query->addField('w', 'field_webpage_url', 'website');
   $query->addField('tt', 'name', 'license');
   $query->condition('n.type', 'item', '=');
-  if ($tool_name) {
-    $query->condition('v.title', $tool_name, '=');
+  if ($tools) {
+     $query->condition('tt.name', $tools, '=');
   }
   // How many days ago?
   if ($timestamp) {
