@@ -18,7 +18,7 @@ function ah_dirt_projects_fetch($title = NULL) {
   $api_key = variable_get('ah_dhcommons_api_key', '');
   $post_data = array(
     'api-key' => $api_key,
-    'tools' => $title,
+    'tool_name' => $title,
   );
   $data = http_build_query($post_data, '', '&');
   $options = array(
@@ -29,7 +29,7 @@ function ah_dirt_projects_fetch($title = NULL) {
   );
   $response = drupal_http_request($url . '/fetch', $options);
   $objects = json_decode($response->data);
-  $block = theme('dirt_dhcommons_block', array('objects' => $objects));
+  $block = theme('dirt_dhcommons_block', array('objects' => $objects, 'title' => $title));
 
   return $block;
 }
@@ -38,7 +38,9 @@ function ah_dirt_projects_fetch($title = NULL) {
  * Initiates rest call to retrieve projects.
  */
 function ah_dirt_get_projects() {
-  $path_parts = explode('/', $_GET['q']);
-  $node = node_load(end($path_parts));
+  $query = $_GET['q'];
+  $source = drupal_lookup_path("source", $query);
+  $path = $source ? $source : $query;
+  $node = menu_get_object("node", 1, $path);
   return ah_dirt_projects_fetch($node->title);
 }

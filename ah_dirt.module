@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Module file for ah_dirt.
@@ -124,22 +125,11 @@ function ah_dirt_find_item_items($nitems, $timestamp) {
   $tools = unserialize($_POST['tools']);
   $query = db_select('node', 'n');
   $query->join('node_revision', 'v', '(n.nid = v.nid) AND (n.vid = v.vid)');
-  $query->join('users', 'u', 'n.uid = u.uid');
-  $query->join('field_revision_field_webpage', 'w', '(n.nid = w.entity_id) AND (n.vid = w.revision_id)');
-  $query->join('field_data_body', 'b', '((b.entity_type = \'node\') AND (b.entity_id = n.nid) AND (b.revision_id = n.vid))');
-  $query->join('field_revision_field_license', 'fl', '(n.nid = fl.entity_id) AND (n.vid = fl.revision_id)');
-  $query->join('taxonomy_term_data', 'tt', '(n.nid = fl.entity_id) AND (n.vid = fl.revision_id) AND (tt.tid = fl.field_license_tid)');
-  $query->fields('v', array('timestamp', 'title'));
-  $query->addField('u', 'name', 'author');
   $query->addField('n', 'nid', 'nid');
-  $query->addField('b', 'body_value', 'description');
-  $query->addField('w', 'field_webpage_url', 'website');
-  $query->addField('tt', 'name', 'license');
   $query->condition('n.type', 'item', '=');
   if ($tools) {
-     $query->condition('v.title', $tools, 'in');
+    $query->condition('v.title', $tools, 'in');
   }
-  // How many days ago?
   if ($timestamp) {
     $query->condition('v.timestamp', time() - ($timestamp * 60 * 60 * 24), '>');
   }
@@ -149,7 +139,16 @@ function ah_dirt_find_item_items($nitems, $timestamp) {
     $query->range(0, $nitems);
   }
   $items = $query->execute()->fetchAll();
-  return $items;
+  $objects = array();
+  foreach ($items as $item) {
+    $node = node_load($item->nid);
+    $object = new stdClass();
+    $object->nid = $node->nid;
+    $object->title = $node->title;
+    $object->description = $node->body['und'][0]['value'];
+    $objects[] = $object;
+  }
+  return $objects;
 }
 
 /**
