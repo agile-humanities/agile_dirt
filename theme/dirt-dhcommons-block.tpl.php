@@ -1,4 +1,9 @@
-<?php ?>
+<?php
+/**
+ * @file
+ * Template for full block.
+ */
+?>
 <div class ="dhcommons_results_block">
   <p class ="dh_commons_intro">
     <?php print $intro; ?>
