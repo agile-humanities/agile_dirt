@@ -23,7 +23,7 @@ function ah_dirt_menu() {
 }
 
 /**
- * Implementation of hook_services_resources().
+ * Implements hook_services_resources().
  */
 function ah_dirt_services_resources() {
   $api = array(
@@ -105,7 +105,7 @@ function ah_dirt_services_resources() {
 }
 
 /**
- * Callback function for item retrieve
+ * Callback function for item retrieval.
  */
 function _ah_dirt_item_retrieve($fn, $nitems, $timestamp) {
   // Sanitize inputs.
@@ -117,12 +117,12 @@ function _ah_dirt_item_retrieve($fn, $nitems, $timestamp) {
 }
 
 /**
- * Gets item posts
+ * Gets item posts.
  */
 function ah_dirt_find_item_items($nitems, $timestamp) {
-  // Compose query
   $nitems = isset($_POST['nitems']) ? $_POST['nitems'] : NULL;
-  $tools = unserialize($_POST['tools']);
+  $serialized_tools = filter_xss($_POST['tools']);
+  $tools = unserialize($serialized_tools);
   $query = db_select('node', 'n');
   $query->join('node_revision', 'v', '(n.nid = v.nid) AND (n.vid = v.vid)');
   $query->addField('n', 'nid', 'nid');

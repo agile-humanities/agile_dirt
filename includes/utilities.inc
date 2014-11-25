@@ -1,14 +1,16 @@
 <?php
+/**
+ * @file
+ * Utility functions.
+ */
 
 /**
  * Retrieves DHCommons data through REST.
  *
  * @global url $base_url
  *
- * @param string $nitems
- *   number of items to return
- * @param string $tools
- *   Name of tool to be returned
+ * @param string $title
+ *   Name of project to be returned
  */
 function ah_dirt_projects_fetch($title = NULL) {
   $dhcommons_url = variable_get('ah_dirt_dhcommons_url', 'http://dev.dhcommons.org');
@@ -22,10 +24,11 @@ function ah_dirt_projects_fetch($title = NULL) {
   );
   $data = http_build_query($post_data, '', '&');
   $options = array(
-    'headers' => array('Accept' => 'application/json',
+    'headers' => array(
+      'Accept' => 'application/json',
       'Content-Type' => 'application/x-www-form-urlencoded'),
     'method' => 'POST',
-    'data' => $data
+    'data' => $data,
   );
   $response = drupal_http_request($url . '/fetch', $options);
   $objects = json_decode($response->data);
