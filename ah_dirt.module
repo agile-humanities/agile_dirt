@@ -156,9 +156,10 @@ function ah_dirt_find_item_items($nitems, $timestamp) {
  */
 function ah_dirt_block_info() {
 
-  $blocks['dh_projects'] = array(
+  $blocks['dh_project_block'] = array(
     'info' => t('DHCommons Projects'),
-    'status' => TRUE,
+    'status' => FALSE,
+    'region' => 'sidebar_first',
     'visibility' => BLOCK_VISIBILITY_LISTED,
     'pages' => 'node/*',
   );
