@@ -141,11 +141,13 @@ function ah_dirt_find_item_items($nitems, $timestamp) {
   $items = $query->execute()->fetchAll();
   $objects = array();
   foreach ($items as $item) {
+    $alias = drupal_get_path_alias("node/{$item->nid}");
     $node = node_load($item->nid);
     $object = new stdClass();
     $object->nid = $node->nid;
     $object->title = $node->title;
     $object->description = $node->body['und'][0]['value'];
+    $object->path = $alias;
     $objects[] = $object;
   }
   return $objects;

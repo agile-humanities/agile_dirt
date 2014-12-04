@@ -43,5 +43,11 @@ function ah_dirt_admin() {
     '#default_value' => variable_get('ah_dirt_dhcommons_alias', 'project'),
     '#description' => t('alias - as provided by DHCommon administrator'),
   );
+    $form['ah_dirt_dhcommons_site_name'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Project Site Name'),
+    '#default_value' => variable_get('ah_dirt_dhcommons_site_name', 'DHCommons'),
+    '#description' => t('Name of the site providing project information'),
+  );
   return system_settings_form($form);
 }

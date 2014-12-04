@@ -25,7 +25,8 @@ function ah_dirt_preprocess_dirt_dhcommons_block(array &$variables) {
   drupal_add_css("$path/css/dhcommons_dirt.css");
   $objects = $variables['objects'];
   $project_links = array();
-  $variables['intro'] = t('The following projects use @tool.', array ('@tool' => $variables['title']));
+  $site = variable_get('ah_dirt_dhcommons_site_name', 'DHCommons');
+  $variables['intro'] = t('The following projects on @site use @tool.', array ('@site' => $site, '@tool' => $variables['title']));
   foreach ($objects as $object) {
     foreach ($object as $key => $value) {
       $converted_object[$key] = $value;
