@@ -174,7 +174,7 @@ function ah_dirt_block_info() {
 function ah_dirt_block_view($delta = '') {
   module_load_include('inc', 'ah_dirt', 'includes/utilities');
   switch ($delta) {
-    case 'dh_projects':
+    case 'dh_project_block':
       $block['subject'] = t('DHCommons');
       $block['content'] = ah_dirt_get_projects();
       break;
