@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Utility functions.
@@ -18,9 +19,13 @@ function ah_dirt_projects_fetch($title = NULL) {
   $alias = variable_get('ah_dirt_dhcommons_alias', 'project');
   $url = "$dhcommons_url/$rest_path/$alias";
   $api_key = variable_get('ah_dhcommons_api_key', '');
+  $taxonomy = variable_get('ah_dirt_dhcommons_taxonomy', 'tools_used');
+  $sort = variable_get('ah_dirt_dhcommons_sort', 'timestamp');
   $post_data = array(
     'api-key' => $api_key,
     'tool_name' => $title,
+    'taxonomy' => $taxonomy,
+    'sort' => $sort,
   );
   $data = http_build_query($post_data, '', '&');
   $options = array(
@@ -31,6 +36,10 @@ function ah_dirt_projects_fetch($title = NULL) {
     'data' => $data,
   );
   $response = drupal_http_request($url . '/fetch', $options);
+  if (!$response || floor($response->code / 100) != 2) {
+    watchdog('agile_dirt', t('Check REST connectivity'));
+    return;
+  }
   $objects = json_decode($response->data);
   $block = theme('dirt_dhcommons_block', array('objects' => $objects, 'title' => $title));
 
