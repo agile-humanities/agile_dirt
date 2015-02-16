@@ -31,6 +31,12 @@ function ah_dirt_admin() {
     '#default_value' => variable_get('ah_dirt_dhcommons_url', 'http://dev.dhcommons.org'),
     '#description' => t('URL of DHCommons site.'),
   );
+  $form['ah_dirt_dhcommons_site_name'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Name of DHCommons site'),
+    '#default_value' => variable_get('ah_dirt_dhcommons_site_name', 'DHCommons'),
+    '#description' => t('Name of DHCommons site supplying project information.'),
+  );
   $form['ah_dirt_dhcommons_rest_path'] = array(
     '#type' => 'textfield',
     '#title' => t('REST Path'),

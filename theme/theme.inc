@@ -26,7 +26,8 @@ function ah_dirt_preprocess_dirt_dhcommons_block(array &$variables) {
   $objects = $variables['objects'];
   $project_links = array();
   $site = variable_get('ah_dirt_dhcommons_site_name', 'DHCommons');
-  $variables['intro'] = t('The following projects on @site use @tool.', array ('@site' => $site, '@tool' => $variables['title']));
+  $title = $variables['title'];
+  $variables['intro'] = t('The following projects on @site use @tool.', array ('@site' => $site, '@tool' => $title));
   foreach ($objects as $object) {
     foreach ($object as $key => $value) {
       $converted_object[$key] = $value;
@@ -41,8 +42,8 @@ function ah_dirt_preprocess_dirt_dhcommons_block(array &$variables) {
     $shown = $max_count;
   }
   $variables['overflow'] = '';
-  if ($count != $shown) {
-    $more = $count - $shown;
-    $variables['overflow'] = l(t('See @count more on DHCommons', array('@count' => $more)), variable_get('ah_dirt_dhcommons_url', 'http://dev.dhcommons.org'));
-  }
+  $variables['count'] = t("Showing @sub of @all", array('@sub' => $shown, '@all' => $count));
+  $site_name = variable_get('ah_dirt_dhcommons_site_name', 'DHCommons');
+  $site_url = variable_get('ah_dirt_dhcommons_url', 'http://dhcommons.org'). "/tools/$title";
+  $variables['overflow'] = l(t("see more on @sitename", array('@sitename' => $site_name)), $site_url);
 }

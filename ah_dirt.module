@@ -120,6 +120,8 @@ function _ah_dirt_item_retrieve($fn, $nitems, $timestamp) {
  * Gets item posts.
  */
 function ah_dirt_find_item_items($nitems, $timestamp) {
+  global $language;
+  $lang_name = $language->language;
   $nitems = isset($_POST['nitems']) ? $_POST['nitems'] : NULL;
   $serialized_tools = filter_xss($_POST['tools']);
   $tools = unserialize($serialized_tools);
@@ -140,13 +142,22 @@ function ah_dirt_find_item_items($nitems, $timestamp) {
   }
   $items = $query->execute()->fetchAll();
   $objects = array();
+
   foreach ($items as $item) {
     $alias = drupal_get_path_alias("node/{$item->nid}");
     $node = node_load($item->nid);
+    $description = '';
+    // Allow for either defined or undefined language type.
+    if (isset($node->body['und'][0]['value'])) {
+      $description = $node->body[$lang_name][0]['value'];
+    }
+    if (isset($node->body[$lang_name][0]['value'])) {
+      $description = $node->body[$lang_name][0]['value'];
+    }
     $object = new stdClass();
     $object->nid = $node->nid;
     $object->title = $node->title;
-    $object->description = $node->body['und'][0]['value'];
+    $object->description = $description;
     $object->path = $alias;
     $objects[] = $object;
   }

@@ -14,5 +14,6 @@
       <li class ="project_link"><?php print $project_link; ?></li>
     <?php endforeach; ?>
   </ul>
+  <div class ="dhcommons_message"><?php print $count; ?></div>
   <div class ="dhcommons_message"><?php print $overflow; ?></div>
 </div>

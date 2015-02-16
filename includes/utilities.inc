@@ -41,9 +41,9 @@ function ah_dirt_projects_fetch($title = NULL) {
     return;
   }
   $objects = json_decode($response->data);
-  $block = theme('dirt_dhcommons_block', array('objects' => $objects, 'title' => $title));
-
-  return $block;
+  if ($objects) {
+    return theme('dirt_dhcommons_block', array('objects' => $objects, 'title' => $title));
+  }
 }
 
 /**
