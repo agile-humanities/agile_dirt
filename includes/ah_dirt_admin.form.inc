@@ -53,7 +53,7 @@ function ah_dirt_admin() {
     '#type' => 'textfield',
     '#title' => t('Taxonomy'),
     '#default_value' => variable_get('ah_dirt_dhcommons_taxonomy', 'tools_used'),
-    '#description' => t('alias - as provided by DHCommon administrator'),
+    '#description' => t('taxonomy - as provided by DHCommon administrator'),
   );
   $form['ah_dirt_dhcommons_site_name'] = array(
     '#type' => 'textfield',
