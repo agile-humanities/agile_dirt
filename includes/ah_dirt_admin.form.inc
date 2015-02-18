@@ -19,12 +19,6 @@ function ah_dirt_admin() {
     '#default_value' => variable_get('ah_dhcommons_api_key', ''),
     '#description' => t('API Key to access DH Commons'),
   );
-  $form['ah_dirt_project_count'] = array(
-    '#type' => 'textfield',
-    '#title' => t('Project Count'),
-    '#default_value' => variable_get('ah_dirt_project_count', 5),
-    '#description' => t('Maximum number of projects to be shown in Projects Tab on term view.'),
-  );
   $form['ah_dirt_dhcommons_url'] = array(
     '#type' => 'textfield',
     '#title' => t('DHCommons URL'),
@@ -60,6 +54,12 @@ function ah_dirt_admin() {
     '#title' => t('Project Site Name'),
     '#default_value' => variable_get('ah_dirt_dhcommons_site_name', 'DHCommons'),
     '#description' => t('Name of the site providing project information'),
+  );
+  $form['ah_dirt_project_count'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Project Count'),
+    '#default_value' => variable_get('ah_dirt_project_count', 5),
+    '#description' => t('Maximum number of projects to be shown in Projects Tab on term view.'),
   );
   $form['ah_dirt_dhcommons_sort'] = array(
     '#type' => 'radios',
