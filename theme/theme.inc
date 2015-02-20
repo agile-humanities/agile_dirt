@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Theming and preprocessing functions.
@@ -27,7 +28,7 @@ function ah_dirt_preprocess_dirt_dhcommons_block(array &$variables) {
   $project_links = array();
   $site = variable_get('ah_dirt_dhcommons_site_name', 'DHCommons');
   $title = $variables['title'];
-  $variables['intro'] = t('The following projects on @site use @tool.', array ('@site' => $site, '@tool' => $title));
+  $variables['intro'] = t('The following projects on @site use @tool.', array('@site' => $site, '@tool' => $title));
   foreach ($objects as $object) {
     foreach ($object as $key => $value) {
       $converted_object[$key] = $value;
@@ -47,6 +48,6 @@ function ah_dirt_preprocess_dirt_dhcommons_block(array &$variables) {
     $variables['count'] = t("Showing @sub of @all", array('@sub' => $shown, '@all' => $count));
   }
   $site_name = variable_get('ah_dirt_dhcommons_site_name', 'DHCommons');
-  $site_url = variable_get('ah_dirt_dhcommons_url', 'http://dhcommons.org'). "/tools/$title";
+  $site_url = variable_get('ah_dirt_dhcommons_url', 'http://dhcommons.org') . "/tools/$title";
   $variables['overflow'] = l(t("See all @all on @sitename", array('@all' => $count, '@sitename' => $site_name)), $site_url);
 }

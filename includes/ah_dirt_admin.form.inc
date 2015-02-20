@@ -66,9 +66,10 @@ function ah_dirt_admin() {
     '#title' => t('Sort by'),
     '#default_value' => variable_get('ah_dirt_dhcommons_sort', 'timestamp'),
     '#description' => t('Sort field for returned results'),
-    '#options' => array('timestamp' => T('Timestamp'),
+    '#options' => array(
+      'timestamp' => t('Timestamp'),
       'title' => t('Title'),
-    )
+    ),
   );
   return system_settings_form($form);
 }

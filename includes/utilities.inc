@@ -37,7 +37,7 @@ function ah_dirt_projects_fetch($title = NULL) {
   );
   $response = drupal_http_request($url . '/fetch', $options);
   if (!$response || floor($response->code / 100) != 2) {
-    watchdog('agile_dirt', t('Check REST connectivity'));
+    watchdog('agile_dirt', 'Check REST connectivity');
     return;
   }
   $objects = json_decode($response->data);
