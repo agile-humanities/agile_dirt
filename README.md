@@ -17,9 +17,9 @@ Create a Drupal role called **rest user**, and give members of that role access 
 Create a user called **RestUser**.  This fictional user exists only for configuration purposes. Credentials are unimportant. Assign this new user the role of **rest user**.
 
 ## Required Drupal 7 Modules
-*Services
-*Services Entity API
-*Services API Key Authentication (optional)
+ *Services
+ *Services Entity API
+ *Services API Key Authentication (optional)
 
 ## Configure publishing
 
