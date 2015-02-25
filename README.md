@@ -19,7 +19,7 @@ Create a user called **RestUser**.  This fictional user exists only for configur
 ## Required Drupal 7 Modules
 - Services
 - Services Entity API
-- Services API Key Authentication (optional)
+- Services API Key Authentication (only if authentication required)
 
 ## Configure publishing
 
