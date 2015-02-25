@@ -1,6 +1,6 @@
 # Agile Humanities DiRT Module
 
-The Agile DiRT Module works in conjunction with the Agile DHCommons Module to allow meaningful exchange of information between the DiRT and DHCommons websites.
+The Agile DiRT Module works in conjunction with the Agile DHCommons Module to allow meaningful exchange of information between the DiRT and DHCommons websites. The agile_dirt module is intended for use on the DiRT website and retrieves *projects* data from the DHCommons website. Both modules are complementary, with each to be installed on its respective website. Both modules are written for Drupal 7.
 
 It is assumed that API-Key authentication will be used to restrict access to published data. If authentication is used, the Drupal Services API Key Authentication module must be installed and enabled. If access is to be left open, all further references to API keys may be ignored.
 
@@ -15,6 +15,11 @@ Install and enable the Agile Humanities DiRT Module.
 Create a Drupal role called **rest user**, and give members of that role access to all permissions listed under Services.
 
 Create a user called **RestUser**.  This fictional user exists only for configuration purposes. Credentials are unimportant. Assign this new user the role of **rest user**.
+
+## Required Drupal 7 Modules
+*Services
+*Services Entity API
+*Services API Key Authentication (optional)
 
 ## Configure publishing
 
